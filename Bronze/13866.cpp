@@ -10,5 +10,5 @@ int main() {
 
     sort(skill, skill+4);
 
-    cout << (skill[0]+skill[3]) - (skill[1]+skill[2]);
+    cout << abs((skill[0]+skill[3]) - (skill[1]+skill[2]));
 }
