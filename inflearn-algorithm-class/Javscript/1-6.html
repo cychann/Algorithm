@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let answer = [];
+        let sum = 0,
+          min = 1000;
+        arr.forEach((n) => {
+          if (n % 2 == 1) {
+            sum += n;
+            if (n < min) {
+              min = n;
+            }
+          }
+        });
+        answer.push(sum, min);
+        return answer;
+      }
+
+      arr = [12, 77, 38, 41, 53, 92, 85];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
