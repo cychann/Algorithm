@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let answer,
+          min = Number.MAX_SAFE_INTEGER;
+        arr.forEach((n) => {
+          if (n < min) {
+            min = n;
+          }
+        });
+        answer = min;
+
+        // answer = Math.min(...arr); 내장함수로도 풀이가 가능.
+
+        return answer;
+      }
+
+      let arr = [5, 3, 7, 11, 2, 15, 17];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
