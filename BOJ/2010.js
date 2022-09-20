@@ -1,10 +1,9 @@
 let input = require("fs").readFileSync("예제.txt").toString().split("\n");
 let count = Number(input[0]);
-let answerStr = "";
+let ans = 0;
 
 for (let i = 1; i <= count; i++) {
-  let num = input[i].split(" ");
-  answerStr += Number(num[0]) + Number(num[1]) + "\n";
+  ans += Number(input[i]);
 }
 
-console.log(answerStr);
+console.log(ans - count + 1);
