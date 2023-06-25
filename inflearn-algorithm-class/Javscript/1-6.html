@@ -1,28 +1,21 @@
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>출력결과</title>
-  </head>
-  <body>
-    <script>
-      function solution(arr) {
-        let answer = [];
-        let sum = 0,
-          min = 1000;
-        arr.forEach((n) => {
-          if (n % 2 == 1) {
-            sum += n;
-            if (n < min) {
-              min = n;
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(arr){
+               let answer = [];
+               
+               let oddArr = arr.filter((n) => n%2 !== 0)
+               answer.push(oddArr.reduce((acc, curr) => acc + curr, 0))
+               answer.push(Math.min(...oddArr))
+               return answer;
             }
-          }
-        });
-        answer.push(sum, min);
-        return answer;
-      }
-
-      arr = [12, 77, 38, 41, 53, 92, 85];
-      console.log(solution(arr));
-    </script>
-  </body>
+            
+            arr=[12, 77, 38, 41, 53, 92, 85];
+            console.log(solution(arr));
+        </script>
+    </body>
 </html>

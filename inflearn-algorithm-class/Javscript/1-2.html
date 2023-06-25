@@ -1,25 +1,27 @@
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>출력결과</title>
-  </head>
-  <body>
-    <script>
-      function solution(a, b, c) {
-        let answer = "YES",
-          max;
-        let arr = [a, b, c];
-        arr.sort();
-        if (arr[0] + arr[1] > arr[2]) {
-          answer = "YES";
-        } else {
-          answer = "NO";
-        }
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(a, b, c){
+              let lenArr = [a, b, c];
+              lenArr.sort()
 
-        return answer;
-      }
+              return lenArr[2] <= lenArr[0] + lenArr[1] ? "YES" : "NO"
 
-      console.log(solution(6, 7, 11));
-    </script>
-  </body>
+              // 다른 풀이
+              // let answer, max;
+              // let sum = a+b+c;
+              // if (a>b)  max = a;
+              // else max = b;
+              // if (c > max)  max = c;
+              // return sum - max > max ? "YES" : "NO"
+              
+            }
+
+            console.log(solution(13, 33, 20));
+        </script>
+    </body>
 </html>
