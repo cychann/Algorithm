@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(s, t){
+               let answer = 0;
+               for (const al of s) {
+                if (al === t)   answer++;
+               }
+
+            //    다른 풀이
+            //    let answer = s.split(t).length - 1
+               return answer;
+            }
+            
+            let str="COMPUTERPROGRAMMING";
+            console.log(solution(str, 'R'));
+        </script>
+    </body>
+</html>
