@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(s){  
+                return s.split("").map((al) => {
+                    if (al.toLowerCase() === al)    return al.toUpperCase()
+                    else    return al.toLowerCase();
+                }).join("")
+            }
+
+            console.log(solution("StuDY"));
+        </script>
+    </body>
+</html>
