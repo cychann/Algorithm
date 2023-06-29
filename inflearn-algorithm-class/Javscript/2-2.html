@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(arr){         
+               let max = 0;
+               let answer = 0;
+               arr.forEach(n => {
+                if (n > max) {
+                    max = n;
+                    answer++;
+                }
+               })
+               return answer;
+            }
+
+            let arr=[130, 135, 148, 140, 145, 150, 150, 153];
+            console.log(solution(arr));
+        </script>
+    </body>
+</html>
