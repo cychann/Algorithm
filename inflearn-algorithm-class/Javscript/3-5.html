@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(s){
+                let answer = "";
+                let curr = s[0];
+                let cnt = 1;
+                
+                for (let i=1; i<s.length; i++) {
+                    if (curr === s[i]) cnt++;
+                    else {
+                        if (cnt === 1) {
+                            answer += curr
+                        }
+                        else    answer += curr + cnt;
+                        curr = s[i]
+                        cnt = 1;
+                    }
+                }
+                if (cnt === 1) {
+                            answer += curr
+                        }
+                        else    answer += curr + cnt;
+                        cnt = 1;
+                return answer;
+                
+            }
+            
+            let str="KKHSSSSSSSE";
+            console.log(solution(str));
+        </script>
+    </body>
+</html>
