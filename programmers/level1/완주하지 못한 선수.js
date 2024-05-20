@@ -29,9 +29,13 @@ function solution(participant, completion) {
     map.set(b, (map.get(b) || 0) - 1);
   }
 
+  // 이렇게 하면 시간 초과가 안나는데,
   for (let [k, v] of map) {
     if (v > 0) return k;
   }
+
+  // // 이렇게 하면 시간 초과가 발생함.
+  // return Array.from(map.keys())[0]
 
   return "nothing";
 }

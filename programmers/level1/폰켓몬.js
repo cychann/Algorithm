@@ -3,12 +3,10 @@ function solution(nums) {
   const map = new Map();
 
   nums.forEach((num) => {
-    map.set(num, (map.get(num) || 0) + 1);
+    map.set(num, map.get(num) + 1 || 1);
   });
 
-  return Math.floor(nums.length / 2) <= map.size
-    ? Math.floor(nums.length / 2)
-    : map.size;
+  return Math.min(nums.length / 2, map.size);
 }
 
 // 더 간결해보이는 코드
