@@ -18,4 +18,13 @@ function solution(phone_book) {
   }
 
   return true;
+
+  // 정렬을 이용한 방법
+  phone_book.sort();
+
+  const result = phone_book.some((phone, idx) => {
+    return phone_book[idx + 1]?.startsWith(phone);
+  });
+
+  return !result;
 }
