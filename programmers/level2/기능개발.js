@@ -1,28 +1,27 @@
 function solution(progresses, speeds) {
-  let leftDays = [];
-  let answer = [];
-  for (let i = 0; i < progresses.length; i++) {
-    let cnt = 0;
-    while (progresses[i] < 100) {
-      progresses[i] += speeds[i];
-      cnt++;
+  // 순서가 존재함 -> 먼저 개발되어도 앞에 있는 기능이 배포될 때 함께 배포
+  // 배포는 하루에 한번.
+
+  // 완료되는 날짜의 값들을 구한다. -> 순회하면서 리턴값을 처리 (순서 생각하면서)
+
+  const completed = progresses.map((progress, idx) => {
+    return Math.ceil((100 - progress) / speeds[idx]);
+  });
+
+  const result = [];
+  let lastReleaseDay = completed[0];
+  let cnt = 1;
+
+  for (let i = 1; i < completed.length; i++) {
+    if (lastReleaseDay >= completed[i]) cnt++;
+    else {
+      result.push(cnt);
+      lastReleaseDay = completed[i];
+      cnt = 1;
     }
-    leftDays.push(cnt);
   }
 
-  let chk = 1;
-  let chkDay = leftDays[0];
-  for (let i = 1; i < leftDays.length; i++) {
-    if (chkDay >= leftDays[i]) {
-      chk++;
-    } else {
-      chkDay = leftDays[i];
-      answer.push(chk);
-      chk = 1;
-    }
-  }
+  result.push(cnt);
 
-  answer.push(chk);
-
-  return answer;
+  return result;
 }

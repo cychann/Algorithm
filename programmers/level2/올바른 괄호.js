@@ -14,3 +14,24 @@ function solution(s) {
 
   return answer;
 }
+
+function solution(s) {
+  const stack = [];
+  let chk = true;
+  s.split("").forEach((part) => {
+    if (part === "(") {
+      stack.push(part);
+    }
+
+    if (part === ")") {
+      if (stack.length === 0) {
+        chk = false;
+        return;
+      }
+
+      stack.pop();
+    }
+  });
+
+  return stack.length === 0 && chk ? true : false;
+}

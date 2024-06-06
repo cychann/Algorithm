@@ -1,9 +1,17 @@
 function solution(arr) {
-  let answer = [arr[0]];
-  for (let i = 1; i < arr.length; i++) {
-    const chk = answer[answer.length - 1];
+  const result = [];
 
-    if (chk !== arr[i]) answer.push(arr[i]);
-  }
-  return answer;
+  arr.forEach((n) => {
+    if (result[result.length - 1] !== n) {
+      result.push(n);
+    }
+  });
+
+  return result;
+}
+
+// 다른 풀이
+
+function solution(arr) {
+  return arr.filter((val, index) => val != arr[index + 1]);
 }
