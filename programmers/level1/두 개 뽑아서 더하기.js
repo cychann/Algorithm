@@ -1,11 +1,10 @@
 function solution(numbers) {
-  let result = [];
-  for (let i = 0; i < numbers.length - 1; i++) {
+  const result = [];
+  for (let i = 0; i < numbers.length; i++) {
     for (let j = i + 1; j < numbers.length; j++) {
-      let sum = numbers[i] + numbers[j];
-      if (!result.includes(sum)) result.push(sum);
+      result.push(numbers[i] + numbers[j]);
     }
   }
 
-  return result.sort((a, b) => a - b);
+  return [...new Set(result)].sort((a, b) => a - b);
 }
