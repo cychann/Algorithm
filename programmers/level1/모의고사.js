@@ -1,17 +1,68 @@
 function solution(answers) {
-  const answer = [];
-  const a1 = [1, 2, 3, 4, 5];
-  const a2 = [2, 1, 2, 3, 2, 4, 2, 5];
-  const a3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5];
+  // 각 삼인방의 패턴 분석
+  // 시험은 최대 10,00문제
 
-  const a1c = answers.filter((a, i) => a === a1[i % a1.length]).length;
-  const a2c = answers.filter((a, i) => a === a2[i % a2.length]).length;
-  const a3c = answers.filter((a, i) => a === a3[i % a3.length]).length;
-  const max = Math.max(a1c, a2c, a3c);
+  const patterns = [
+    [1, 2, 3, 4, 5],
+    [2, 1, 2, 3, 2, 4, 2, 5],
+    [3, 3, 1, 1, 2, 2, 4, 4, 5, 5],
+  ];
 
-  if (max === a1c) answer.push(1);
-  if (max === a2c) answer.push(2);
-  if (max === a3c) answer.push(3);
+  // answers의 배열을 순회 -> 각 삼인방을 순회할때, 패턴의 길이에 해당하는 값을 나머지로 처리해서 비교하도록 연산
 
-  return answer;
+  const result = [0, 0, 0];
+
+  for (let i = 0; i < patterns.length; i++) {
+    const patternLen = patterns[i].length;
+    for (let j = 0; j < answers.length; j++) {
+      const chkIdx = j % patternLen;
+
+      if (answers[j] === patterns[i][chkIdx]) {
+        result[i]++;
+      }
+    }
+  }
+
+  const maxResult = Math.max(...result);
+
+  return result
+    .map((n, idx) => {
+      if (n === maxResult) {
+        return idx + 1;
+      }
+    })
+    .filter((n) => n);
+}
+
+/* 
+다른 풀이
+*/
+
+function solution(answers) {
+  const patterns = [
+    [1, 2, 3, 4, 5],
+    [2, 1, 2, 3, 2, 4, 2, 5],
+    [3, 3, 1, 1, 2, 2, 4, 4, 5, 5],
+  ];
+
+  const result = [0, 0, 0];
+
+  for (const [i, answer] of answers.entries()) {
+    for (const [j, pattern] of patterns.entries()) {
+      if (answer === pattern[i % pattern.length]) {
+        result[j] += 1;
+      }
+    }
+  }
+
+  const maxScore = Math.max(...result);
+
+  const scoreArr = [];
+  for (let i = 0; i < result.length; i++) {
+    if (maxScore === result[i]) {
+      scoreArr.push(i + 1);
+    }
+  }
+
+  return scoreArr;
 }
