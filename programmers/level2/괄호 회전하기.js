@@ -1,28 +1,34 @@
-function solution(s) {
-  let answer = 0;
-  for (let i = 0; i < s.length; i++) {
-    let rotateS = s.slice(i) + s.slice(0, i);
-    let stack = [];
-    let chk = true;
+// 회전한 문자열이 올바른 괄호 문자열인지 체크하는 함수
+function correctString(str) {
+  const stack = [];
 
-    for (let bracket of rotateS) {
-      if (bracket === "(" || bracket === "[" || bracket === "{")
-        stack.push(bracket);
-      else {
-        let chkLastBracket = stack.pop();
-
-        if (chkLastBracket === "(" && bracket === ")") continue;
-        if (chkLastBracket === "[" && bracket === "]") continue;
-        if (chkLastBracket === "{" && bracket === "}") continue;
-        chk = false;
+  for (const s of str) {
+    if (s === "[" || s === "(" || s === "{") {
+      stack.push(s);
+    } else {
+      if (stack.length === 0) return 0;
+      const last = stack.pop();
+      if (
+        (s === "]" && last !== "[") ||
+        (s === ")" && last !== "(") ||
+        (s === "}" && last !== "{")
+      ) {
+        return 0;
       }
     }
-    if (stack.length !== 0) chk = false;
-    chk && answer++;
   }
-  return answer;
+
+  return stack.length === 0 ? 1 : 0;
 }
 
-// console.log(solution('()('))
-// console.log(solution('('))
-// console.log(solution('{{{{{{'))
+function solution(s) {
+  // s의 길이만큼 회전
+  let result = 0;
+
+  for (let i = 0; i < s.length; i++) {
+    const rotateStr = s.slice(i) + s.slice(0, i);
+    result += correctString(rotateStr);
+  }
+
+  return result;
+}
