@@ -17,21 +17,15 @@ function solution(s) {
 
 function solution(s) {
   const stack = [];
-  let chk = true;
-  s.split("").forEach((part) => {
-    if (part === "(") {
-      stack.push(part);
-    }
 
-    if (part === ")") {
-      if (stack.length === 0) {
-        chk = false;
-        return;
-      }
-
+  for (const a of s) {
+    if (a === "(") {
+      stack.push(a);
+    } else {
+      if (stack.length === 0) return false;
       stack.pop();
     }
-  });
+  }
 
-  return stack.length === 0 && chk ? true : false;
+  return stack.length === 0 ? true : false;
 }
