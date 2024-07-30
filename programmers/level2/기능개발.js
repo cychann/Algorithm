@@ -25,3 +25,22 @@ function solution(progresses, speeds) {
 
   return result;
 }
+
+function solution(progresses, speeds) {
+  const result = [];
+
+  while (progresses.length > 0) {
+    progresses = progresses.map((p, i) => p + speeds[i]);
+    let chk = 0;
+
+    while (progresses[0] >= 100) {
+      progresses.shift();
+      speeds.shift();
+      chk += 1;
+    }
+
+    chk > 0 && result.push(chk);
+  }
+
+  return result;
+}
