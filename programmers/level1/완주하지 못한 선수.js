@@ -1,20 +1,21 @@
-// 내 풀이
 function solution(participant, completion) {
-  let result = "";
+  /*
+  단 한명의 선수를 제외하고 모두 완주
+  동명이인이 있음
+  */
+  const map = new Map();
 
-  const sortedParticipant = participant.sort();
-  const sortedCompletion = completion.sort();
+  participant.forEach((p) => {
+    map.set(p, map.has(p) ? map.get(p) + 1 : 1);
+  });
 
-  for (let i = 0; i < completion.length; i++) {
-    if (sortedParticipant[i] !== sortedCompletion[i]) {
-      result = sortedParticipant[i];
-      break;
-    }
+  completion.forEach((c) => {
+    map.set(c, map.has(c) ? map.get(c) - 1 : 0);
+  });
+
+  for (const [key, value] of map) {
+    if (value === 1) return key;
   }
-
-  return result === ""
-    ? sortedParticipant[sortedParticipant.length - 1]
-    : result;
 }
 
 // 다른 좋은 풀이 (해시를 이용)
