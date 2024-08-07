@@ -43,3 +43,37 @@ function solution(genres, plays) {
         .map((data) => data.id)
     );
 }
+
+// 풀이 2 (24.08.07)
+function solution(genres, plays) {
+  // 장르 별로 가장 많이 재생된 노래를 두 개씩 모아 베스트 앨범을 출시
+  const genreObj = {};
+  const playObj = {};
+  const result = [];
+
+  for (let i = 0; i < plays.length; i++) {
+    const genre = genres[i];
+    const play = plays[i];
+
+    if (!genreObj[genre]) {
+      genreObj[genre] = {};
+      playObj[genre] = 0;
+    }
+
+    genreObj[genre][i] = play;
+    playObj[genre] += play;
+  }
+
+  const sortedPlayObj = Object.keys(playObj).sort(
+    (a, b) => playObj[b] - playObj[a]
+  );
+
+  for (const genre of sortedPlayObj) {
+    const sortedGenreObj = Object.keys(genreObj[genre]).sort(
+      (a, b) => genreObj[genre][b] - genreObj[genre][a]
+    );
+    result.push(...sortedGenreObj.splice(0, 2).map((song) => +song));
+  }
+
+  return result;
+}
