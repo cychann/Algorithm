@@ -19,3 +19,22 @@ function solution(n, words) {
   }
   return [0, 0];
 }
+
+// sol2
+function solution(n, words) {
+  const wordLen = words.length;
+  const wordSet = new Set();
+  let last = words[0][0];
+
+  for (let i = 0; i < wordLen; i++) {
+    const word = words[i];
+    if (wordSet.has(word) || last !== word[0]) {
+      return [(i % n) + 1, Math.floor(i / n) + 1];
+    }
+
+    last = word.slice(-1);
+    wordSet.add(word);
+  }
+
+  return [0, 0];
+}
